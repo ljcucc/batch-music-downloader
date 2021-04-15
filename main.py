@@ -1,10 +1,14 @@
-from __future__ import unicode_literals
+# from __future__ import unicode_literals
 from youtubesearchpython import VideosSearch
 
 import youtube_dl
 
 import csv
 import random
+
+# from urllib.request import urlopen
+
+import music_preview
 
 def readCSV():
     music_list = []
@@ -67,6 +71,9 @@ def download(url):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 
+
+
+
 def main():
     print("starting...")
     data = readCSV()
@@ -80,10 +87,17 @@ def main():
     finalResult = search(sample["title"], dur, info=sample)
     finalResult = sortSearch(finalResult)
 
-    print(finalResult[0])
+    topPredictMusic = finalResult[0]["origin"]
 
-    url = finalResult[0]["origin"]["link"]
-    # download(url)
+    print(topPredictMusic)
+
+    url = topPredictMusic["link"]
+
+    action = input("Do you want to download music(type d) or just preview(type v)? ")
+    if(action == "d"):
+        download(url)
+    elif(action == "v"):
+        music_preview.open_preview(finalResult[0], sample)
     
 
 if __name__ == "__main__":

@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 youtube-search-python = "*"
 youtube-dl = "*"
+pillow = "*"
+requests = "*"
 
 [dev-packages]
 
