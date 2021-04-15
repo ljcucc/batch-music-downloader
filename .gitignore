@@ -1,0 +1,4 @@
+*.csv
+/workspace/*
+/.vscode/*
+*.mp3
